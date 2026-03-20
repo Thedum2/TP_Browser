@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\TPBrowser.Core\TPBrowser.Core.csproj" />
+    <ProjectReference Include="..\TPBrowser.Style\TPBrowser.Style.csproj" />
+    <ProjectReference Include="..\TPBrowser.Parser\TPBrowser.Parser.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

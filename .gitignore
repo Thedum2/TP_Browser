@@ -1,0 +1,34 @@
+﻿# JetBrains / Rider
+.idea/
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET build outputs
+**/bin/
+**/obj/
+
+# Test results and coverage
+TestResults/
+**/TestResults/
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+artifacts/
+
+# Logs and temporary diagnostics
+*.log
+
+# Local environment workaround folders
+LocalSdks/
