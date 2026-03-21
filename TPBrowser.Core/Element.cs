@@ -2,5 +2,5 @@
 
 public class Element
 {
-    public Dictionary<StyleProperty.StylePropertyName, StyleValue> Styles;
+    public Dictionary<StyleProperty.StylePropertyName, StyleValue> Styles { get; } = new();
 }

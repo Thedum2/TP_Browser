@@ -33,4 +33,6 @@ public readonly struct Color
     public static readonly Color Transparent = new(0, 0, 0, 0);
     public static readonly Color Black = new(0, 0, 0, 255);
     public static readonly Color White = new(255, 255, 255, 255);
+
+    public override string ToString() => $"#{R:X2}{G:X2}{B:X2}{A:X2}";
 }
