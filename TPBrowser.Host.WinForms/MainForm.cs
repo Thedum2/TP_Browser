@@ -2,9 +2,50 @@
 
 public partial class MainForm : Form
 {
+    // P/Invoke for window dragging
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool ReleaseCapture();
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+    private const int WM_NCLBUTTONDOWN = 0xA1;
+    private const int HTCAPTION = 0x2;
+
     public MainForm()
     {
         InitializeComponent();
+    }
+
+    private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Left)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+        }
+    }
+
+    private void BtnMinimize_Click(object sender, EventArgs e)
+    {
+        this.WindowState = FormWindowState.Minimized;
+    }
+
+    private void BtnMaximize_Click(object sender, EventArgs e)
+    {
+        if (this.WindowState == FormWindowState.Maximized)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
+        else
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+    }
+
+    private void BtnClose_Click(object sender, EventArgs e)
+    {
+        this.Close();
     }
 
     private void ApplyButtonHover(Button btn, Color normal, Color hover)
@@ -186,6 +227,12 @@ public partial class MainForm : Form
         ApplyButtonHover(btnClose,
             Color.Transparent,
             Color.FromArgb(180, 67, 54));
+
+        // Wire up event handlers
+        panelTitleBar.MouseDown += PanelTitleBar_MouseDown;
+        btnMinimize.Click += BtnMinimize_Click;
+        btnMaximize.Click += BtnMaximize_Click;
+        btnClose.Click += BtnClose_Click;
     }
 
     private System.Windows.Forms.Button btnMaximize;
