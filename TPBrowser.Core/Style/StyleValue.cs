@@ -32,7 +32,7 @@ public sealed class LengthStyleValue : StyleValue
         Unit = unit;
     }
 
-    public override string ToString() => $"{Value}{Unit.ToString().ToLower()}";
+    public override string ToString() => $"{Value.ToString(System.Globalization.CultureInfo.InvariantCulture)}{Unit.ToString().ToLowerInvariant()}";
 }
 
 public sealed class ColorStyleValue : StyleValue
@@ -60,7 +60,7 @@ public sealed class NumberStyleValue : StyleValue
         Value = value;
     }
 
-    public override string ToString() => Value.ToString();
+    public override string ToString() => Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
 }
 
 public sealed class StyleDeclaration
@@ -70,6 +70,9 @@ public sealed class StyleDeclaration
 
     public StyleDeclaration(StyleProperty.StylePropertyName property, StyleValue value)
     {
+        if (value == null)
+            throw new ArgumentNullException(nameof(value));
+
         Property = property;
         Value = value;
     }
